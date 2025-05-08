@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-tiro-devanagari-sanskrit), var(--font-geist-sans), serif;
+}
+
+
+@layer base {
+  :root {
+    /* Light Mode Colors */
+    --background: 45 50% 98%; /* Light Cream */
+    --foreground: 220 80% 15%; /* Deep Blue */
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 220 80% 15%; /* Deep Blue */
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 220 80% 15%; /* Deep Blue */
+    --primary: 220 80% 40%; /* Brighter Deep Blue */
+    --primary-foreground: 45 50% 98%; /* Light Cream */
+    --secondary: 45 80% 90%; /* Light Gold/Yellow */
+    --secondary-foreground: 220 80% 15%; /* Deep Blue */
+    --muted: 45 50% 94%; /* Slightly darker cream */
+    --muted-foreground: 220 40% 40%; /* Muted Blue */
+    --accent: 30 100% 55%; /* Saffron */
+    --accent-foreground: 0 0% 100%; /* White */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 45 20% 88%; /* Light Gold Border */
+    --input: 45 20% 88%; /* Light Gold Border */
+    --ring: 30 100% 55%; /* Saffron Ring */
+    --chart-1: 220 70% 50%;
+    --chart-2: 45 80% 60%;
+    --chart-3: 30 100% 60%;
+    --chart-4: 210 60% 70%;
+    --chart-5: 50 70% 70%;
+    --radius: 0.5rem;
+
+    --sidebar-background: 220 80% 98%;
+    --sidebar-foreground: 220 80% 15%;
+    --sidebar-primary: 220 80% 40%;
+    --sidebar-primary-foreground: 45 50% 98%;
+    --sidebar-accent: 30 100% 55%; /* Saffron */
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 20% 88%;
+    --sidebar-ring: 30 100% 55%;
+  }
+
+  .dark {
+     /* Dark Mode Colors - Cosmic Dark with Vishnu Palette */
+    --background: 220 80% 5%; /* Very Deep Blue */
+    --foreground: 45 80% 90%; /* Light Gold/Yellow */
+    --card: 220 80% 10%; /* Slightly Lighter Deep Blue */
+    --card-foreground: 45 80% 90%; /* Light Gold/Yellow */
+    --popover: 220 80% 5%; /* Very Deep Blue */
+    --popover-foreground: 45 80% 90%; /* Light Gold/Yellow */
+    --primary: 45 85% 70%; /* Divine Gold */
+    --primary-foreground: 220 80% 10%; /* Slightly Lighter Deep Blue */
+    --secondary: 220 50% 20%; /* Darker Muted Blue */
+    --secondary-foreground: 45 80% 90%; /* Light Gold/Yellow */
+    --muted: 220 50% 15%; /* Very Dark Muted Blue */
+    --muted-foreground: 45 50% 70%; /* Muted Gold */
+    --accent: 30 100% 60%; /* Saffron */
+    --accent-foreground: 220 80% 5%; /* Very Deep Blue */
+    --destructive: 0 70% 50%; /* Darker Red */
+    --destructive-foreground: 0 0% 98%; /* White */
+    --border: 220 50% 25%; /* Dark Blue Border */
+    --input: 220 50% 25%; /* Dark Blue Border */
+    --ring: 30 100% 60%; /* Saffron Ring */
+    --chart-1: 45 85% 70%; /* Divine Gold */
+    --chart-2: 220 60% 60%; /* Brighter Blue */
+    --chart-3: 30 100% 60%; /* Saffron */
+    --chart-4: 210 70% 70%; /* Lighter Blue */
+    --chart-5: 50 80% 80%; /* Lighter Gold */
+    --sidebar-background: 220 80% 8%;
+    --sidebar-foreground: 45 80% 90%;
+    --sidebar-primary: 45 85% 70%; /* Divine Gold */
+    --sidebar-primary-foreground: 220 80% 10%;
+    --sidebar-accent: 30 100% 60%; /* Saffron */
+    --sidebar-accent-foreground: 220 80% 5%;
+    --sidebar-border: 220 50% 25%;
+    --sidebar-ring: 30 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border transition-colors duration-300 ease-in-out; /* Soft transitions */
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300 ease-in-out;
+  }
+}
+
+/* Add subtle floating animation for symbols */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating-symbol {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Add glowing border effect */
+.glowing-border {
+  @apply border border-transparent transition-all duration-300;
+}
+.glowing-border:hover {
+   @apply border-accent shadow-[0_0_15px_theme(colors.accent)];
+}
+
