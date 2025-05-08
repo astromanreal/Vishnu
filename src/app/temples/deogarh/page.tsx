@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Calendar, Landmark, Building, Globe, Architecture, Users } from 'lucide-react';
+import { MapPin, Calendar, Landmark, Building, Globe, Building2 as ArchitectureIcon, Users } from 'lucide-react'; // Changed Architecture to Building2 as ArchitectureIcon
 import { getTempleBySlug, type Temple } from '@/data/temples';
 import { notFound } from 'next/navigation';
 
@@ -100,7 +100,7 @@ export default async function DeogarhTemplePage() {
                </div>
                {temple.architecture && (
                  <div className="flex items-start">
-                   <Architecture className="h-4 w-4 mr-2 mt-0.5 text-accent flex-shrink-0" />
+                   <ArchitectureIcon className="h-4 w-4 mr-2 mt-0.5 text-accent flex-shrink-0" />
                    <span>Important example of Gupta style architecture.</span>
                  </div>
                )}

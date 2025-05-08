@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Calendar, Landmark, Users, Building, Globe, Towers, Link as LinkIcon } from 'lucide-react';
+import { MapPin, Calendar, Landmark, Users, Building, Globe, Pyramid as TowersIcon, Link as LinkIcon } from 'lucide-react'; // Changed Towers to Pyramid as TowersIcon
 import Link from 'next/link';
 import { getTempleBySlug, type Temple } from '@/data/temples';
 import { notFound } from 'next/navigation';
@@ -117,7 +117,7 @@ export default async function KallalagarTemplePage() {
                )}
                 {temple.architecture?.tower && (
                   <div className="flex items-start">
-                      <Towers className="h-4 w-4 mr-2 mt-0.5 text-accent flex-shrink-0" />
+                      <TowersIcon className="h-4 w-4 mr-2 mt-0.5 text-accent flex-shrink-0" />
                       <span>Sanctum Tower: {temple.architecture.tower}</span>
                   </div>
                 )}

@@ -2,14 +2,14 @@
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Calendar, Landmark, Building, Globe, Shield, Users, Architecture } from 'lucide-react';
+import { MapPin, Calendar, Landmark, Building, Globe, Shield, Users, Building2 as ArchitectureIcon } from 'lucide-react'; // Changed Architecture to Building2 as ArchitectureIcon
 import { getTempleBySlug, type Temple } from '@/data/temples';
 import { notFound } from 'next/navigation';
 
 export default async function AngkorWatPage() {
-  const temple = await getTempleBySlug('angkor-wat');
+  const templeData = await getTempleBySlug('angkor-wat'); // Renamed to templeData to avoid conflict
 
-  if (!temple) {
+  if (!templeData) {
     notFound();
   }
 
@@ -18,28 +18,28 @@ export default async function AngkorWatPage() {
       <Card className="overflow-hidden shadow-lg mb-12">
         <div className="relative h-64 md:h-96">
           <Image
-            src={temple.imageUrl || `https://picsum.photos/seed/angkor-wat/1200/400`}
-            alt={temple.name}
+            src={templeData.imageUrl || `https://picsum.photos/seed/angkor-wat/1200/400`}
+            alt={templeData.name}
             layout="fill"
             objectFit="cover"
             className="transition-transform duration-500 hover:scale-105"
-            data-ai-hint={temple.imageHint}
+            data-ai-hint={templeData.imageHint}
             priority // Prioritize loading the main image
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           <div className="absolute bottom-0 left-0 p-6 md:p-8 z-10">
             <CardTitle className="text-3xl md:text-5xl font-bold font-serif text-white mb-2" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>
-              {temple.name}
+              {templeData.name}
             </CardTitle>
              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-200">
-                 {temple.location && (
+                 {templeData.location && (
                    <span className="flex items-center">
-                      <MapPin className="h-4 w-4 mr-1" /> {temple.location}
+                      <MapPin className="h-4 w-4 mr-1" /> {templeData.location}
                    </span>
                  )}
-                 {temple.coordinates && (
+                 {templeData.coordinates && (
                    <span className="flex items-center">
-                      <Globe className="h-4 w-4 mr-1" /> {temple.coordinates}
+                      <Globe className="h-4 w-4 mr-1" /> {templeData.coordinates}
                    </span>
                  )}
             </div>
@@ -57,35 +57,35 @@ export default async function AngkorWatPage() {
                  About the Temple
               </CardTitle>
                <CardDescription className="text-lg text-muted-foreground pt-1">
-                 {temple.description}
+                 {templeData.description}
                </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-               {(temple.builder || temple.built || temple.affiliation) && (
+               {(templeData.builder || templeData.built || templeData.affiliation) && (
                  <div>
                    <h3 className="font-semibold text-lg mb-2 text-primary/90 flex items-center gap-1"><Calendar className="h-4 w-4" /> History</h3>
                    <ul className="list-disc list-inside text-muted-foreground text-sm space-y-1 pl-2">
-                     {temple.builder && <li><strong>Builder:</strong> {temple.builder}</li>}
-                     {temple.built && <li><strong>Built Around:</strong> {temple.built}</li>}
-                     {temple.affiliation?.startsWith('Originally') && <li><strong>Original Dedication:</strong> {temple.affiliation.split(',')[0].replace('Originally ', '')}</li>}
-                     {temple.affiliation?.includes('later') && <li><strong>Later Use:</strong> {temple.affiliation.split('later')[1]?.trim()}</li>}
+                     {templeData.builder && <li><strong>Builder:</strong> {templeData.builder}</li>}
+                     {templeData.built && <li><strong>Built Around:</strong> {templeData.built}</li>}
+                     {templeData.affiliation?.startsWith('Originally') && <li><strong>Original Dedication:</strong> {templeData.affiliation.split(',')[0].replace('Originally ', '')}</li>}
+                     {templeData.affiliation?.includes('later') && <li><strong>Later Use:</strong> {templeData.affiliation.split('later')[1]?.trim()}</li>}
                    </ul>
                  </div>
                )}
-                {temple.architecture && (
+                {templeData.architecture && (
                   <div>
-                   <h3 className="font-semibold text-lg mb-2 text-primary/90 flex items-center gap-1"><Architecture className="h-4 w-4" /> Architecture</h3>
+                   <h3 className="font-semibold text-lg mb-2 text-primary/90 flex items-center gap-1"><ArchitectureIcon className="h-4 w-4" /> Architecture</h3>
                    <ul className="list-disc list-inside text-muted-foreground text-sm space-y-1 pl-2">
-                     {temple.architecture.style && <li><strong>Style:</strong> {temple.architecture.style}</li>}
-                     {temple.architecture.notes && temple.architecture.notes.includes('Mount Meru') && <li><strong>Symbolism:</strong> Represents Mount Meru</li>}
-                     {temple.architecture.notes && temple.architecture.notes.includes('bas-reliefs') && <li><strong>Key Features:</strong> Extensive bas-reliefs, moat, galleried temple</li>}
+                     {templeData.architecture.style && <li><strong>Style:</strong> {templeData.architecture.style}</li>}
+                     {templeData.architecture.notes && templeData.architecture.notes.includes('Mount Meru') && <li><strong>Symbolism:</strong> Represents Mount Meru</li>}
+                     {templeData.architecture.notes && templeData.architecture.notes.includes('bas-reliefs') && <li><strong>Key Features:</strong> Extensive bas-reliefs, moat, galleried temple</li>}
                    </ul>
                  </div>
                 )}
-               {temple.unescoStatus && (
+               {templeData.unescoStatus && (
                  <div>
                    <h3 className="font-semibold text-lg mb-1 text-primary/90 flex items-center gap-1"><Shield className="h-4 w-4" /> UNESCO Status</h3>
-                   <p className="text-muted-foreground text-sm">{temple.unescoStatus}</p>
+                   <p className="text-muted-foreground text-sm">{templeData.unescoStatus}</p>
                 </div>
                )}
             </CardContent>
@@ -99,21 +99,21 @@ export default async function AngkorWatPage() {
               <CardTitle className="text-xl font-serif">Key Information</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
-               {temple.affiliation && (
+               {templeData.affiliation && (
                  <div className="flex items-start">
                    <Users className="h-4 w-4 mr-2 mt-0.5 text-accent flex-shrink-0" />
-                   <span><strong>Affiliation:</strong> {temple.affiliation}</span>
+                   <span><strong>Affiliation:</strong> {templeData.affiliation}</span>
                  </div>
                )}
                 <div className="flex items-start">
                   <Building className="h-4 w-4 mr-2 mt-0.5 text-accent flex-shrink-0" />
                   <span>Largest religious monument in the world.</span>
                </div>
-                 {temple.tags && temple.tags.length > 0 && (
+                 {templeData.tags && templeData.tags.length > 0 && (
                    <div className="pt-4">
                      <h4 className="font-semibold mb-2 text-primary/90">Tags:</h4>
                      <div className="flex flex-wrap gap-2">
-                       {temple.tags.map((tag, index) => (
+                       {templeData.tags.map((tag, index) => (
                          <Badge key={index} variant="secondary">{tag}</Badge>
                        ))}
                      </div>
