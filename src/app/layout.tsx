@@ -39,6 +39,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
       <meta name="google-site-verification" content="mac7aLjz9hgBPOeatEJp8fZ6RL2GRi8PeWQfgcITzFU" />
+        <meta name="google-adsense-account" content="ca-pub-1985141847074491">
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${tiroSanskrit.variable} antialiased font-sans`}>
          <ThemeProvider
